@@ -23,7 +23,7 @@ let	p19 = document.getElementById("p19");
 let	p20 = document.getElementById("p20");
 let video = document.getElementById("video");
 
-axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
+ axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
         .then(function (response) {
            const data = response.data.meals[0];
            recipeName(data);
@@ -31,12 +31,13 @@ axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
            recipeInstructions(data);
            recipeIngredients(data);
            recipeVideo(data);
-           NewRecipe();
+           igg(data)
         })
+
 // Name of meal
  function recipeName(recipe) {
    title.innerHTML = recipe.strMeal
-   console.log(recipe.strMeal)
+   //console.log(recipe.strMeal)
 };
 
 //Image of meal
@@ -50,7 +51,7 @@ function recipeInstructions(Ins) {
 	instructions.innerHTML = Ins.strInstructions
 };
 
-// ingreduents
+// ingredients
 function recipeIngredients(ingred) {
     p1.innerHTML = ingred.strIngredient1
     p2.innerHTML = ingred.strIngredient2
@@ -74,13 +75,33 @@ function recipeIngredients(ingred) {
     p20.innerHTML = ingred.strIngredient20
 };
 
+// Test run with Ingredient
+function igg(str) {
+  let x = [];
+  for (let i = 1; i <= 20; i++){
+  	console.log(str.strIngredient+[i])
+  }
+}
+
+
+
+
 function recipeVideo(vid) {
    let video = document.getElementById("video").href = vid.strYoutube;
 };
 
-function NewRecipe(e) {
-	
-};
+  function NewRecipe() {
+  axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
+        .then(function (response) {
+           const data = response.data.meals[0];
+           recipeName(data);
+           recipeImage(data);
+           recipeInstructions(data);
+           recipeIngredients(data);
+           recipeVideo(data);
+  
+        })
+}
 
 
 
