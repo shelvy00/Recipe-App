@@ -1,7 +1,10 @@
 let title = document.getElementById("title");
 //let img = document.getElementById("img").src = 
 let instructions = document.getElementById("instructions");
-let	p1 = document.getElementById("p1");
+let listElement = document.querySelector("ul");
+
+
+/*let	p1 = document.getElementById("p1");
 let	p2 = document.getElementById("p2");
 let	p3 = document.getElementById("p3");
 let	p4 = document.getElementById("p4");
@@ -20,7 +23,7 @@ let	p16 = document.getElementById("p16");
 let	p17 = document.getElementById("p17");
 let	p18 = document.getElementById("p18");
 let	p19 = document.getElementById("p19");
-let	p20 = document.getElementById("p20");
+let	p20 = document.getElementById("p20");*/
 let video = document.getElementById("video");
 
  axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
@@ -29,7 +32,7 @@ let video = document.getElementById("video");
            recipeName(data);
            recipeImage(data);
            recipeInstructions(data);
-           recipeIngredients(data);
+           //recipeIngredients(data);
            recipeVideo(data);
            igg(data)
         })
@@ -77,12 +80,14 @@ function recipeIngredients(ingred) {
 
 // Test run with Ingredient
 function igg(str) {
-  let x = [];
   for (let i = 1; i <= 20; i++){
-  	console.log(str.strIngredient+[i])
+     const newItem = document.createElement("li");
+     listElement.appendChild(newItem);
+     newItem.innerHTML = str["strIngredient" + i];
+
+  	//console.log(str["strIngredient" + i]);
   }
 }
-
 
 
 
@@ -97,9 +102,9 @@ function recipeVideo(vid) {
            recipeName(data);
            recipeImage(data);
            recipeInstructions(data);
-           recipeIngredients(data);
+           //recipeIngredients(data);
            recipeVideo(data);
-  
+           igg(data)
         })
 }
 
